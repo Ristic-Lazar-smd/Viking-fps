@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://clj56ib6cl4qd"]
 
-[ext_resource type="Script" path="res://!Scripts/Movement.gd" id="1_rj53c"]
-[ext_resource type="Texture2D" uid="uid://dydnshjfkn7gk" path="res://icon.svg" id="2_fnyd7"]
+[ext_resource type="Script" path="res://!Scripts/Movement.gd" id="1_immbc"]
+[ext_resource type="Texture2D" uid="uid://dydnshjfkn7gk" path="res://icon.svg" id="2_e2664"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xrjfc"]
 
@@ -40,7 +40,7 @@ environment = SubResource("Environment_3undr")
 
 [node name="Aleksa" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.762627, 0)
-script = ExtResource("1_rj53c")
+script = ExtResource("1_immbc")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Aleksa"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25407, 0)
@@ -101,20 +101,20 @@ alignment = 1
 [node name="img1" type="TextureRect" parent="UI/AbilitiesContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-texture = ExtResource("2_fnyd7")
+texture = ExtResource("2_e2664")
 expand_mode = 2
 stretch_mode = 4
 
 [node name="img2" type="TextureRect" parent="UI/AbilitiesContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-texture = ExtResource("2_fnyd7")
+texture = ExtResource("2_e2664")
 expand_mode = 2
 stretch_mode = 4
 
 [node name="img3" type="TextureRect" parent="UI/AbilitiesContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-texture = ExtResource("2_fnyd7")
+texture = ExtResource("2_e2664")
 expand_mode = 2
 stretch_mode = 4
