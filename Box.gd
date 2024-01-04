@@ -1,6 +1,7 @@
 extends MeshInstance3D
 
 @export var i= 6
+@export var o = 9
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
