@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://clj56ib6cl4qd"]
 
-[ext_resource type="Script" path="res://!Scripts/Movement.gd" id="1_b6gv6"]
+[ext_resource type="Script" path="res://!Scripts/Movement.gd" id="1_rj53c"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xrjfc"]
 
@@ -39,7 +39,7 @@ environment = SubResource("Environment_3undr")
 
 [node name="Aleksa" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.762627, 0)
-script = ExtResource("1_b6gv6")
+script = ExtResource("1_rj53c")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Aleksa"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25407, 0)
