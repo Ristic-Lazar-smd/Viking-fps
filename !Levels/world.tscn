@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://brmsyf5ljy482"]
 
-[ext_resource type="Script" path="res://Box.gd" id="1_vc1cj"]
-[ext_resource type="Texture2D" uid="uid://dydnshjfkn7gk" path="res://icon.svg" id="2_fnyd7"]
+[ext_resource type="Script" path="res://Box.gd" id="1_7p5u1"]
+[ext_resource type="Texture2D" uid="uid://dydnshjfkn7gk" path="res://icon.svg" id="2_2k4o0"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_iwpu0"]
 
@@ -12,7 +12,7 @@
 [node name="Box" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.317573, 0, 0)
 mesh = SubResource("BoxMesh_iwpu0")
-script = ExtResource("1_vc1cj")
+script = ExtResource("1_7p5u1")
 i = 3
 
 [node name="Camera3D" type="Camera3D" parent="."]
@@ -25,7 +25,7 @@ transform = Transform3D(0.99579, -0.0344795, 0.0849341, -0.0669078, -0.90674, 0.
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.18051, 0.602859, 0)
 mesh = SubResource("BoxMesh_iwpu0")
 skeleton = NodePath("../Box")
-script = ExtResource("1_vc1cj")
+script = ExtResource("1_7p5u1")
 i = 3
 
 [node name="Aleksa" type="MeshInstance3D" parent="."]
@@ -77,20 +77,20 @@ alignment = 1
 [node name="TextureRect" type="TextureRect" parent="UI/AbilitiesContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-texture = ExtResource("2_fnyd7")
+texture = ExtResource("2_2k4o0")
 expand_mode = 2
 stretch_mode = 4
 
 [node name="TextureRect2" type="TextureRect" parent="UI/AbilitiesContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-texture = ExtResource("2_fnyd7")
+texture = ExtResource("2_2k4o0")
 expand_mode = 2
 stretch_mode = 4
 
 [node name="TextureRect3" type="TextureRect" parent="UI/AbilitiesContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-texture = ExtResource("2_fnyd7")
+texture = ExtResource("2_2k4o0")
 expand_mode = 2
 stretch_mode = 4
