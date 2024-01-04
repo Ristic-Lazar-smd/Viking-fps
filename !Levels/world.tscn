@@ -74,7 +74,7 @@ pivot_offset = Vector2(488, 125)
 theme_override_constants/separation = 65
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="UI/AbilitiesContainer"]
+[node name="img1" type="TextureRect" parent="UI/AbilitiesContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 texture = ExtResource("2_2k4o0")
