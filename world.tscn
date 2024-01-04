@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://brmsyf5ljy482"]
+[gd_scene load_steps=5 format=3 uid="uid://gaqf25ry23uv"]
 
 [ext_resource type="Texture2D" uid="uid://dydnshjfkn7gk" path="res://icon.svg" id="2_fnyd7"]
 
@@ -95,14 +95,14 @@ texture = ExtResource("2_fnyd7")
 expand_mode = 2
 stretch_mode = 4
 
-[node name="TextureRect2" type="TextureRect" parent="UI/AbilitiesContainer"]
+[node name="img2" type="TextureRect" parent="UI/AbilitiesContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 texture = ExtResource("2_fnyd7")
 expand_mode = 2
 stretch_mode = 4
 
-[node name="TextureRect3" type="TextureRect" parent="UI/AbilitiesContainer"]
+[node name="img3" type="TextureRect" parent="UI/AbilitiesContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 texture = ExtResource("2_fnyd7")
