@@ -1,20 +1,29 @@
-[gd_scene load_steps=9 format=3 uid="uid://clj56ib6cl4qd"]
+[gd_scene load_steps=13 format=3 uid="uid://clj56ib6cl4qd"]
 
+[ext_resource type="Texture2D" uid="uid://dab25idfe32si" path="res://Textures/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="1_2x4ah"]
 [ext_resource type="Script" path="res://!Scripts/Movement.gd" id="1_immbc"]
+[ext_resource type="Texture2D" uid="uid://b1k8mq6l733um" path="res://Textures/Dark-grid.png" id="1_y2soj"]
+[ext_resource type="Texture2D" uid="uid://dsger4cspmod6" path="res://Textures/Orange.png" id="2_e5g57"]
 [ext_resource type="Texture2D" uid="uid://dydnshjfkn7gk" path="res://icon.svg" id="2_e2664"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xrjfc"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2m60g"]
+albedo_color = Color(0.337255, 0.752941, 0.964706, 1)
+albedo_texture = ExtResource("1_y2soj")
+uv1_triplanar = true
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kynie"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gru4q"]
+albedo_texture = ExtResource("2_e5g57")
+uv1_triplanar = true
 
-[sub_resource type="Sky" id="Sky_y0xro"]
-sky_material = SubResource("ProceduralSkyMaterial_kynie")
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_i6rxv"]
+panorama = ExtResource("1_2x4ah")
+
+[sub_resource type="Sky" id="Sky_v82di"]
+sky_material = SubResource("PanoramaSkyMaterial_i6rxv")
 
 [sub_resource type="Environment" id="Environment_3undr"]
 background_mode = 2
-sky = SubResource("Sky_y0xro")
+sky = SubResource("Sky_v82di")
 tonemap_mode = 2
 glow_enabled = true
 
@@ -25,17 +34,25 @@ points = PackedVector3Array(-0.125207, -0.532801, -0.480507, 0.0227831, 0.47607,
 
 [node name="World" type="Node3D"]
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
+[node name="Env" type="Node3D" parent="."]
+
+[node name="Pod" type="CSGBox3D" parent="Env"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
 use_collision = true
 size = Vector3(30, 0.1, 30)
-material = SubResource("StandardMaterial3D_xrjfc")
+material = SubResource("StandardMaterial3D_2m60g")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+[node name="Box" type="CSGBox3D" parent="Env"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.19257, 0.931955, -6.33904)
+use_collision = true
+size = Vector3(2.92432, 1.89307, 2.21008)
+material = SubResource("StandardMaterial3D_gru4q")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Env"]
+transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 shadow_enabled = true
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Env"]
 environment = SubResource("Environment_3undr")
 
 [node name="Aleksa" type="CharacterBody3D" parent="."]
@@ -51,7 +68,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25407, 0)
 shape = SubResource("ConvexPolygonShape3D_gmtpy")
 
 [node name="Head" type="Node3D" parent="Aleksa"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.95474, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.95, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Aleksa/Head"]
 fov = 90.0
