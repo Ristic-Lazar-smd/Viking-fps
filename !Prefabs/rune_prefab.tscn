@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cat70m23g4r8t"]
 
-[ext_resource type="Texture2D" uid="uid://ccaqnnh7uxdd0" path="res://!Sprites/runeTest.png" id="1_nqroi"]
+[ext_resource type="Script" path="res://!Prefabs/GenerateRandomRune.gd" id="2_biiw6"]
 
 [node name="RunePrefab" type="TextureRect"]
 anchors_preset = 8
@@ -17,6 +17,6 @@ grow_vertical = 2
 pivot_offset = Vector2(47, 44)
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource("1_nqroi")
 expand_mode = 1
 stretch_mode = 4
+script = ExtResource("2_biiw6")
