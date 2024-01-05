@@ -41,7 +41,7 @@ func _process(delta):
 	elif Input.is_action_just_pressed("inventory") and isInventoryOpen==true:
 		mainContainer.visible = false
 		isInventoryOpen = false
-		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 
 func _on_new_strenght_rune_pressed():

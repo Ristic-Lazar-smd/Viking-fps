@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://clj56ib6cl4qd"]
+[gd_scene load_steps=15 format=3 uid="uid://clj56ib6cl4qd"]
 
 [ext_resource type="Texture2D" uid="uid://dab25idfe32si" path="res://Textures/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="1_2x4ah"]
 [ext_resource type="Script" path="res://!Scenes/GameManager.gd" id="1_717cj"]
