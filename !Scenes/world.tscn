@@ -1,19 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://clj56ib6cl4qd"]
+[gd_scene load_steps=14 format=3 uid="uid://clj56ib6cl4qd"]
 
 [ext_resource type="Texture2D" uid="uid://dab25idfe32si" path="res://Textures/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="1_2x4ah"]
 [ext_resource type="Script" path="res://!Scripts/Movement.gd" id="1_immbc"]
 [ext_resource type="Texture2D" uid="uid://b1k8mq6l733um" path="res://Textures/Dark-grid.png" id="1_y2soj"]
 [ext_resource type="Texture2D" uid="uid://dsger4cspmod6" path="res://Textures/Orange.png" id="2_e5g57"]
 [ext_resource type="Texture2D" uid="uid://dydnshjfkn7gk" path="res://icon.svg" id="2_e2664"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2m60g"]
-albedo_color = Color(0.337255, 0.752941, 0.964706, 1)
-albedo_texture = ExtResource("1_y2soj")
-uv1_triplanar = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gru4q"]
-albedo_texture = ExtResource("2_e5g57")
-uv1_triplanar = true
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_i6rxv"]
 panorama = ExtResource("1_2x4ah")
@@ -27,51 +18,98 @@ sky = SubResource("Sky_v82di")
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_sbloa"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2m60g"]
+albedo_color = Color(0.337255, 0.752941, 0.964706, 1)
+albedo_texture = ExtResource("1_y2soj")
+uv1_triplanar = true
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_gmtpy"]
-points = PackedVector3Array(-0.125207, -0.532801, -0.480507, 0.0227831, 0.47607, 0.498884, 0.169713, 0.559144, 0.464172, 0.231051, -0.803591, 0.320455, 0.40741, 0.651043, -0.243523, -0.482789, 0.594843, 0.0822132, -0.362868, -0.682312, 0.289697, 0.469044, -0.654529, -0.0662713, -0.127444, 0.842701, -0.338103, -0.393435, -0.683942, -0.244717, 0.438255, 0.623309, 0.200849, 0.0841477, 0.977454, 0.114795, -0.0682023, -0.976458, -0.12927, 0.20055, -0.563129, -0.451454, -0.185527, 0.595453, -0.453475, -0.273363, 0.592268, 0.407754, -0.00693649, -0.476823, 0.49966, 0.375821, -0.588614, 0.316955, 0.111579, 0.563059, -0.481177, -0.41725, 0.527866, -0.270497, -0.484546, -0.596972, -0.0665097, -0.279747, 0.908561, 0.0533361, -0.250197, -0.880712, 0.205319, 0.263647, -0.902771, -0.127394, 0.293368, 0.871526, -0.157196, 0.373412, -0.526319, -0.328246, 0.499663, 0.476641, -0.00688856, 0.0531056, 0.875001, 0.324703, -0.154543, -0.590854, 0.465879, -0.0972799, -0.782358, -0.398188, -0.387649, -0.498171, 0.31565, -0.30068, -0.587995, -0.388901)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gru4q"]
+albedo_texture = ExtResource("2_e5g57")
+uv1_triplanar = true
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_chtro"]
+height = 1.8
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mhfnx"]
+height = 1.8
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6o0c3"]
+height = 1.3
 
 [node name="World" type="Node3D"]
 
 [node name="Env" type="Node3D" parent="."]
 
-[node name="Pod" type="CSGBox3D" parent="Env"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Env"]
+transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.75, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Env"]
+environment = SubResource("Environment_3undr")
+
+[node name="Floor" type="CSGBox3D" parent="Env"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
 use_collision = true
 size = Vector3(30, 0.1, 30)
 material = SubResource("StandardMaterial3D_2m60g")
 
 [node name="Box" type="CSGBox3D" parent="Env"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.19257, 0.931955, -6.33904)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.19257, 0.0169982, -6.33904)
 use_collision = true
 size = Vector3(2.92432, 1.89307, 2.21008)
 material = SubResource("StandardMaterial3D_gru4q")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Env"]
-transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 0, 0)
-shadow_enabled = true
+[node name="Floor2" type="CSGBox3D" parent="Env"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.40414, -23.1054)
+use_collision = true
+size = Vector3(30, 0.1, 30)
+material = SubResource("StandardMaterial3D_2m60g")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="Env"]
-environment = SubResource("Environment_3undr")
+[node name="Wall" type="CSGBox3D" parent="Env"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0654531, 1.86008, 14.8692)
+use_collision = true
+size = Vector3(29.9991, 4.08942, 0.327818)
+material = SubResource("StandardMaterial3D_gru4q")
+
+[node name="Wall2" type="CSGBox3D" parent="Env"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.9162, 1.86482, 3.48165)
+use_collision = true
+size = Vector3(0.229553, 4.08942, 23.1434)
+material = SubResource("StandardMaterial3D_gru4q")
+
+[node name="Wall3" type="CSGBox3D" parent="Env"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.0076, 1.84086, 3.33235)
+use_collision = true
+size = Vector3(0.229553, 4.08942, 23.1434)
+material = SubResource("StandardMaterial3D_gru4q")
 
 [node name="Aleksa" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.762627, 0)
 script = ExtResource("1_immbc")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Aleksa"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25407, 0)
-mesh = SubResource("CapsuleMesh_sbloa")
+visible = false
+mesh = SubResource("CapsuleMesh_chtro")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Aleksa"]
+[node name="StandingCollision" type="CollisionShape3D" parent="Aleksa"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25407, 0)
-shape = SubResource("ConvexPolygonShape3D_gmtpy")
+shape = SubResource("CapsuleShape3D_mhfnx")
+
+[node name="CrouchingCollision" type="CollisionShape3D" parent="Aleksa"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00325, 0)
+shape = SubResource("CapsuleShape3D_6o0c3")
+disabled = true
 
 [node name="Head" type="Node3D" parent="Aleksa"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.95, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Aleksa/Head"]
 fov = 90.0
+
+[node name="RayCast3D" type="RayCast3D" parent="Aleksa"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.65008, 0)
+target_position = Vector3(0, 0.5, 0)
+debug_shape_thickness = 5
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
