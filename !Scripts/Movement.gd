@@ -7,7 +7,8 @@ extends CharacterBody3D
 @onready var standing_collision = $StandingCollision
 @onready var crouching_collision = $CrouchingCollision
 @onready var raycast_standup = $RayCast3D
-@onready var animation_player: AnimationPlayer = $Neck/Head/Eyes/AnimationPlayer
+@onready var head_bob_anim: AnimationPlayer = $Neck/Head/Eyes/HeadBobAnim
+
 
 
 #SPEEDS
@@ -153,7 +154,10 @@ func _physics_process(delta):
 	
 	#Head bob animation on landing
 	if is_on_floor() && last_player_velocity.y < 0:
-		animation_player.play("player_land")
+		print("bob")
+		head_bob_anim.stop()
+		head_bob_anim.play("player_land")
+		
 	
 #--FUNCS--
 func _movementHandler(delta,input_dir):
