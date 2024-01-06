@@ -99,6 +99,7 @@ script = ExtResource("1_immbc")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Aleksa"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.903538, 0)
+visible = false
 mesh = SubResource("CapsuleMesh_chtro")
 
 [node name="StandingCollision" type="CollisionShape3D" parent="Aleksa"]
@@ -115,9 +116,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
 [node name="Head" type="Node3D" parent="Aleksa/Neck"]
 
-[node name="Eyes" type="Node3D" parent="Aleksa/Neck/Head"]
-
-[node name="PlayerCam" type="Camera3D" parent="Aleksa/Neck/Head/Eyes"]
+[node name="PlayerCam" type="Camera3D" parent="Aleksa/Neck/Head"]
 fov = 90.0
 
 [node name="RayCast3D" type="RayCast3D" parent="Aleksa"]

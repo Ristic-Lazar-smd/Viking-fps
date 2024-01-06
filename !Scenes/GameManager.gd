@@ -20,7 +20,6 @@ extends Node3D
 @onready var specialSlotButton = $UI/RunePopUpContainer/RuneSlotsContainer/SpecialSlot
 
 
-
 var isInventoryOpen = false
 var selectedRune
 var selectedRuneTag
