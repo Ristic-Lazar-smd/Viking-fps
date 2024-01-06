@@ -1,0 +1,9 @@
+[gd_scene load_steps=4 format=3 uid="uid://d1lh78hy0j1gs"]
+
+[ext_resource type="PackedScene" uid="uid://tkppvlnoqicd" path="res://!Prefabs/magic_rune.tscn" id="1_nkyj7"]
+[ext_resource type="Script" path="res://!Scripts/MagicRuneTEST.gd" id="2_25y0e"]
+[ext_resource type="Texture2D" uid="uid://blke5qmkqqfuu" path="res://!Sprites/runeTest3.png" id="2_mrox4"]
+
+[node name="RunePrefab" instance=ExtResource("1_nkyj7")]
+texture = ExtResource("2_mrox4")
+script = ExtResource("2_25y0e")
