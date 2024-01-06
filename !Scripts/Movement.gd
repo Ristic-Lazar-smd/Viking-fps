@@ -132,6 +132,6 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, current_speed)
 	
 	#print("speed",current_speed)
-	print(slide_speed)
+	#print(slide_speed)
 	move_and_slide()
 #ako pokusam da slajdujem a ne sprintam onda samo prokliza bez dodavanja slide speeda
