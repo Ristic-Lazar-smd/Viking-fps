@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://dsrtja6sj1u3u"]
+
+[ext_resource type="PackedScene" uid="uid://cat70m23g4r8t" path="res://!Prefabs/Runes/rune_prefab.tscn" id="1_ue28o"]
+[ext_resource type="Script" path="res://!Scripts/Runes/MajorRunes/StrengthRune.gd" id="2_we6gf"]
+
+[node name="RunePrefab" instance=ExtResource("1_ue28o")]
+script = ExtResource("2_we6gf")

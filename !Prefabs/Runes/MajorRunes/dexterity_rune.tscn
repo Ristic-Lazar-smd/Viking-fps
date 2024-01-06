@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://r58r7gewtfob"]
+
+[ext_resource type="PackedScene" uid="uid://cat70m23g4r8t" path="res://!Prefabs/Runes/rune_prefab.tscn" id="1_h488y"]
+[ext_resource type="Script" path="res://!Scripts/Runes/MajorRunes/DexterityRune.gd" id="2_y53ac"]
+
+[node name="RunePrefab" instance=ExtResource("1_h488y")]
+script = ExtResource("2_y53ac")

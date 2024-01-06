@@ -1,4 +1,5 @@
-extends DexterityRune
+extends BaseRune
+class_name MagicRune
 
 
 # Called when the node enters the scene tree for the first time.
@@ -11,12 +12,10 @@ func _process(delta):
 	super._process(delta)
 
 func _attackRuneEffect() -> void:
-	if Input.is_action_just_pressed("LMB"):
-		print("DEX ATTACK")
+	pass
 
 func _actionRuneEffect() -> void:
-	if Input.is_action_just_pressed("RMB"):
-		print("DEX ACTION")
+	pass
 
 func _specialRuneEffect() -> void:
-	super._specialRuneEffect()
+	pass

@@ -1,9 +1,0 @@
-[gd_scene load_steps=4 format=3 uid="uid://djv8cwg3mwnq6"]
-
-[ext_resource type="PackedScene" uid="uid://r58r7gewtfob" path="res://!Prefabs/dexterity_rune.tscn" id="1_mbow7"]
-[ext_resource type="Texture2D" uid="uid://c8y108mdrnoho" path="res://!Sprites/runeTest4.png" id="2_6ihn7"]
-[ext_resource type="Script" path="res://!Scripts/DexterityRuneTEST.gd" id="2_6pepv"]
-
-[node name="RunePrefab" instance=ExtResource("1_mbow7")]
-texture = ExtResource("2_6ihn7")
-script = ExtResource("2_6pepv")

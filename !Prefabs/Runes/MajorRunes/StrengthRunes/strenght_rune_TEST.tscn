@@ -1,0 +1,9 @@
+[gd_scene load_steps=4 format=3 uid="uid://wskesp4fbn5s"]
+
+[ext_resource type="PackedScene" uid="uid://dsrtja6sj1u3u" path="res://!Prefabs/Runes/MajorRunes/strength_rune.tscn" id="1_uo5rr"]
+[ext_resource type="Script" path="res://!Scripts/Runes/MajorRunes/StrengthRunes/StrengthRuneTEST.gd" id="2_n8tmb"]
+[ext_resource type="Texture2D" uid="uid://dt07bp0v85s34" path="res://!Sprites/Runes/runeTest6.png" id="2_o7ey6"]
+
+[node name="RunePrefab" instance=ExtResource("1_uo5rr")]
+texture = ExtResource("2_o7ey6")
+script = ExtResource("2_n8tmb")

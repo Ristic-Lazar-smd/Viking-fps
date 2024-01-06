@@ -1,8 +1,8 @@
 extends Node3D
 
-@onready var strengthRunePrefab = preload("res://!Prefabs/strenght_rune_TEST.tscn")
-@onready var dexRunePrefab = preload("res://!Prefabs/dexterity_rune_TEST.tscn")
-@onready var magicRunePrefab = preload("res://!Prefabs/magic_rune_TEST.tscn")
+@onready var strengthRunePrefab = preload("res://!Prefabs/Runes/MajorRunes/StrengthRunes/strenght_rune_TEST.tscn")
+@onready var dexRunePrefab = preload("res://!Prefabs/Runes/MajorRunes/DexterityRunes/dexterity_rune_TEST.tscn")
+@onready var magicRunePrefab = preload("res://!Prefabs/Runes/MajorRunes/MagicRunes/magic_rune_TEST.tscn")
 @onready var strenghtRuneContainer = $UI/PopUpGamePause/RunePopUpContainer/NewRunesContainer/NewStrenghtRune/PanelContainer
 @onready var dexRuneContainer = $UI/PopUpGamePause/RunePopUpContainer/NewRunesContainer/NewDexterityRune/PanelContainer
 @onready var magicRuneContainer = $UI/PopUpGamePause/RunePopUpContainer/NewRunesContainer/NewMagicRune/PanelContainer
@@ -30,23 +30,6 @@ var runeChosen:bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#var sRuneInstance = runePrefab.instantiate()
-	#strenghtRuneContainer.add_child(sRuneInstance)
-	
-	#var dRuneInstance = runePrefab.instantiate()
-	#dexRuneContainer.add_child(dRuneInstance)
-	
-	#var mRuneInstance = runePrefab.instantiate()
-	#magicRuneContainer.add_child(mRuneInstance)
-	
-	#var attackRuneInstance = runePrefab.instantiate()
-	#attackRuneSlotContainer.add_child(attackRuneInstance)
-	
-	#var actionRuneInstance = runePrefab.instantiate()
-	#actionRuneSlotContainer.add_child(actionRuneInstance)
-	
-	#var specialRuneInstance = runePrefab.instantiate()
-	#specialRuneSlotContainer.add_child(specialRuneInstance)
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

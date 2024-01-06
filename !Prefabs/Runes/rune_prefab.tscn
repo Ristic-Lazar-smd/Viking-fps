@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cat70m23g4r8t"]
 
-[ext_resource type="Texture2D" uid="uid://ccaqnnh7uxdd0" path="res://!Sprites/runeTest.png" id="1_hnspf"]
-[ext_resource type="Script" path="res://!Scripts/BaseRune.gd" id="1_lvy5b"]
+[ext_resource type="Texture2D" uid="uid://ccaqnnh7uxdd0" path="res://!Sprites/Runes/runeTest.png" id="1_hnspf"]
+[ext_resource type="Script" path="res://!Scripts/Runes/BaseRune.gd" id="1_lvy5b"]
 
 [node name="RunePrefab" type="TextureRect"]
 anchors_preset = 8
