@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1bjnksod364x"]
+
+[ext_resource type="PackedScene" uid="uid://q445tgujurp1" path="res://!Prefabs/Runes/minor_rune_prefab.tscn" id="1_7gg3y"]
+[ext_resource type="Script" path="res://!Scripts/Runes/MinorRunes/MinorRuneTEST1.gd" id="2_wgljv"]
+
+[node name="MinorRunePrefab" instance=ExtResource("1_7gg3y")]
+script = ExtResource("2_wgljv")

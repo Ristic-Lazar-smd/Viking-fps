@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://q445tgujurp1"]
+
+[ext_resource type="Texture2D" uid="uid://chn03tagftk1y" path="res://!Sprites/minorRune1.png" id="1_q2jq5"]
+[ext_resource type="Script" path="res://!Scripts/Runes/BaseMinorRune.gd" id="2_pui2m"]
+
+[node name="MinorRunePrefab" type="TextureRect"]
+texture = ExtResource("1_q2jq5")
+stretch_mode = 4
+script = ExtResource("2_pui2m")

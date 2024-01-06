@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://clj56ib6cl4qd"]
+[gd_scene load_steps=26 format=3 uid="uid://clj56ib6cl4qd"]
 
 [ext_resource type="Texture2D" uid="uid://dab25idfe32si" path="res://Textures/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="1_2x4ah"]
 [ext_resource type="Script" path="res://!Scripts/GameManager.gd" id="1_717cj"]
@@ -10,6 +10,10 @@
 [ext_resource type="PackedScene" uid="uid://wskesp4fbn5s" path="res://!Prefabs/Runes/MajorRunes/StrengthRunes/strenght_rune_TEST.tscn" id="8_udnm6"]
 [ext_resource type="PackedScene" uid="uid://djv8cwg3mwnq6" path="res://!Prefabs/Runes/MajorRunes/DexterityRunes/dexterity_rune_TEST.tscn" id="9_v0nbo"]
 [ext_resource type="PackedScene" uid="uid://d1lh78hy0j1gs" path="res://!Prefabs/Runes/MajorRunes/MagicRunes/magic_rune_TEST.tscn" id="10_36yw3"]
+[ext_resource type="PackedScene" uid="uid://b1bjnksod364x" path="res://!Prefabs/Runes/MinorRunes/minor_rune_TEST1.tscn" id="11_7tie4"]
+[ext_resource type="Texture2D" uid="uid://dkejrvfxkadh3" path="res://!Sprites/minorRune2.png" id="12_r2c4c"]
+[ext_resource type="Texture2D" uid="uid://ch8vwm8hlfvc7" path="res://!Sprites/minorRune3.png" id="13_pc0l1"]
+[ext_resource type="PackedScene" uid="uid://h6wskug1xaql" path="res://!Prefabs/player_manager.tscn" id="14_spfqp"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_i6rxv"]
 panorama = ExtResource("1_2x4ah")
@@ -212,6 +216,23 @@ value = 90.0
 rounded = true
 show_percentage = false
 
+[node name="XpBar" type="ProgressBar" parent="UI"]
+modulate = Color(0, 1, 1, 1)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = -97.0
+offset_right = 595.0
+offset_bottom = -63.0
+grow_vertical = 0
+pivot_offset = Vector2(0, 34)
+step = 1.0
+value = 90.0
+rounded = true
+show_percentage = false
+
 [node name="AbilitiesContainer" type="HBoxContainer" parent="UI"]
 layout_mode = 1
 anchors_preset = 3
@@ -259,7 +280,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="RunePopUpContainer" type="HBoxContainer" parent="UI/PopUpGamePause"]
+[node name="MajorRunePopUpContainer" type="HBoxContainer" parent="UI/PopUpGamePause"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -276,12 +298,12 @@ pivot_offset = Vector2(200, 200)
 theme_override_constants/separation = 200
 alignment = 1
 
-[node name="RuneSlotsContainer" type="VBoxContainer" parent="UI/PopUpGamePause/RunePopUpContainer"]
+[node name="RuneSlotsContainer" type="VBoxContainer" parent="UI/PopUpGamePause/MajorRunePopUpContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 30
 
-[node name="AttackSlot" type="Button" parent="UI/PopUpGamePause/RunePopUpContainer/RuneSlotsContainer"]
+[node name="AttackSlot" type="Button" parent="UI/PopUpGamePause/MajorRunePopUpContainer/RuneSlotsContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -291,7 +313,7 @@ action_mode = 0
 icon_alignment = 1
 expand_icon = true
 
-[node name="PanelContainer" type="PanelContainer" parent="UI/PopUpGamePause/RunePopUpContainer/RuneSlotsContainer/AttackSlot"]
+[node name="PanelContainer" type="PanelContainer" parent="UI/PopUpGamePause/MajorRunePopUpContainer/RuneSlotsContainer/AttackSlot"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -301,31 +323,10 @@ grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("7_pahq6")
 
-[node name="RunePrefab" parent="UI/PopUpGamePause/RunePopUpContainer/RuneSlotsContainer/AttackSlot/PanelContainer" instance=ExtResource("8_udnm6")]
+[node name="RunePrefab" parent="UI/PopUpGamePause/MajorRunePopUpContainer/RuneSlotsContainer/AttackSlot/PanelContainer" instance=ExtResource("8_udnm6")]
 layout_mode = 2
 
-[node name="ActionSlot" type="Button" parent="UI/PopUpGamePause/RunePopUpContainer/RuneSlotsContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-focus_mode = 0
-action_mode = 0
-icon_alignment = 1
-expand_icon = true
-
-[node name="PanelContainer" type="PanelContainer" parent="UI/PopUpGamePause/RunePopUpContainer/RuneSlotsContainer/ActionSlot"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-
-[node name="RunePrefab" parent="UI/PopUpGamePause/RunePopUpContainer/RuneSlotsContainer/ActionSlot/PanelContainer" instance=ExtResource("9_v0nbo")]
-layout_mode = 2
-
-[node name="SpecialSlot" type="Button" parent="UI/PopUpGamePause/RunePopUpContainer/RuneSlotsContainer"]
+[node name="ActionSlot" type="Button" parent="UI/PopUpGamePause/MajorRunePopUpContainer/RuneSlotsContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -334,7 +335,7 @@ action_mode = 0
 icon_alignment = 1
 expand_icon = true
 
-[node name="PanelContainer" type="PanelContainer" parent="UI/PopUpGamePause/RunePopUpContainer/RuneSlotsContainer/SpecialSlot"]
+[node name="PanelContainer" type="PanelContainer" parent="UI/PopUpGamePause/MajorRunePopUpContainer/RuneSlotsContainer/ActionSlot"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -343,15 +344,36 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="RunePrefab" parent="UI/PopUpGamePause/RunePopUpContainer/RuneSlotsContainer/SpecialSlot/PanelContainer" instance=ExtResource("10_36yw3")]
+[node name="RunePrefab" parent="UI/PopUpGamePause/MajorRunePopUpContainer/RuneSlotsContainer/ActionSlot/PanelContainer" instance=ExtResource("9_v0nbo")]
 layout_mode = 2
 
-[node name="NewRunesContainer" type="VBoxContainer" parent="UI/PopUpGamePause/RunePopUpContainer"]
+[node name="SpecialSlot" type="Button" parent="UI/PopUpGamePause/MajorRunePopUpContainer/RuneSlotsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_mode = 0
+action_mode = 0
+icon_alignment = 1
+expand_icon = true
+
+[node name="PanelContainer" type="PanelContainer" parent="UI/PopUpGamePause/MajorRunePopUpContainer/RuneSlotsContainer/SpecialSlot"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="RunePrefab" parent="UI/PopUpGamePause/MajorRunePopUpContainer/RuneSlotsContainer/SpecialSlot/PanelContainer" instance=ExtResource("10_36yw3")]
+layout_mode = 2
+
+[node name="NewRunesContainer" type="VBoxContainer" parent="UI/PopUpGamePause/MajorRunePopUpContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 30
 
-[node name="NewStrenghtRune" type="Button" parent="UI/PopUpGamePause/RunePopUpContainer/NewRunesContainer"]
+[node name="NewStrenghtRune" type="Button" parent="UI/PopUpGamePause/MajorRunePopUpContainer/NewRunesContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -360,7 +382,7 @@ action_mode = 0
 icon_alignment = 1
 expand_icon = true
 
-[node name="PanelContainer" type="PanelContainer" parent="UI/PopUpGamePause/RunePopUpContainer/NewRunesContainer/NewStrenghtRune"]
+[node name="PanelContainer" type="PanelContainer" parent="UI/PopUpGamePause/MajorRunePopUpContainer/NewRunesContainer/NewStrenghtRune"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -369,7 +391,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="NewDexterityRune" type="Button" parent="UI/PopUpGamePause/RunePopUpContainer/NewRunesContainer"]
+[node name="NewDexterityRune" type="Button" parent="UI/PopUpGamePause/MajorRunePopUpContainer/NewRunesContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -378,7 +400,7 @@ action_mode = 0
 icon_alignment = 1
 expand_icon = true
 
-[node name="PanelContainer" type="PanelContainer" parent="UI/PopUpGamePause/RunePopUpContainer/NewRunesContainer/NewDexterityRune"]
+[node name="PanelContainer" type="PanelContainer" parent="UI/PopUpGamePause/MajorRunePopUpContainer/NewRunesContainer/NewDexterityRune"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -387,7 +409,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="NewMagicRune" type="Button" parent="UI/PopUpGamePause/RunePopUpContainer/NewRunesContainer"]
+[node name="NewMagicRune" type="Button" parent="UI/PopUpGamePause/MajorRunePopUpContainer/NewRunesContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -396,7 +418,7 @@ action_mode = 0
 icon_alignment = 1
 expand_icon = true
 
-[node name="PanelContainer" type="PanelContainer" parent="UI/PopUpGamePause/RunePopUpContainer/NewRunesContainer/NewMagicRune"]
+[node name="PanelContainer" type="PanelContainer" parent="UI/PopUpGamePause/MajorRunePopUpContainer/NewRunesContainer/NewMagicRune"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -406,6 +428,7 @@ grow_vertical = 2
 mouse_filter = 1
 
 [node name="ClosePopUpButton" type="Button" parent="UI/PopUpGamePause"]
+visible = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -420,10 +443,83 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "DONE"
 
-[connection signal="pressed" from="UI/PopUpGamePause/RunePopUpContainer/RuneSlotsContainer/AttackSlot" to="." method="_on_attack_slot_pressed"]
-[connection signal="pressed" from="UI/PopUpGamePause/RunePopUpContainer/RuneSlotsContainer/ActionSlot" to="." method="_on_action_slot_pressed"]
-[connection signal="pressed" from="UI/PopUpGamePause/RunePopUpContainer/RuneSlotsContainer/SpecialSlot" to="." method="_on_special_slot_pressed"]
-[connection signal="pressed" from="UI/PopUpGamePause/RunePopUpContainer/NewRunesContainer/NewStrenghtRune" to="." method="_on_new_strenght_rune_pressed"]
-[connection signal="pressed" from="UI/PopUpGamePause/RunePopUpContainer/NewRunesContainer/NewDexterityRune" to="." method="_on_new_dexterity_rune_pressed"]
-[connection signal="pressed" from="UI/PopUpGamePause/RunePopUpContainer/NewRunesContainer/NewMagicRune" to="." method="_on_new_magic_rune_pressed"]
+[node name="MinorRunePopUpContainer" type="HBoxContainer" parent="UI/PopUpGamePause"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -350.0
+offset_top = -100.0
+offset_right = 350.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 160
+
+[node name="FirstMinorRune" type="Button" parent="UI/PopUpGamePause/MinorRunePopUpContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="UI/PopUpGamePause/MinorRunePopUpContainer/FirstMinorRune"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="MinorRunePrefab" parent="UI/PopUpGamePause/MinorRunePopUpContainer/FirstMinorRune/PanelContainer" instance=ExtResource("11_7tie4")]
+layout_mode = 2
+
+[node name="SecondMinorRune" type="Button" parent="UI/PopUpGamePause/MinorRunePopUpContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="UI/PopUpGamePause/MinorRunePopUpContainer/SecondMinorRune"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="TextureRect" type="TextureRect" parent="UI/PopUpGamePause/MinorRunePopUpContainer/SecondMinorRune/PanelContainer"]
+layout_mode = 2
+texture = ExtResource("12_r2c4c")
+stretch_mode = 4
+
+[node name="ThirdMinorRune" type="Button" parent="UI/PopUpGamePause/MinorRunePopUpContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="UI/PopUpGamePause/MinorRunePopUpContainer/ThirdMinorRune"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="TextureRect" type="TextureRect" parent="UI/PopUpGamePause/MinorRunePopUpContainer/ThirdMinorRune/PanelContainer"]
+layout_mode = 2
+texture = ExtResource("13_pc0l1")
+stretch_mode = 4
+
+[node name="PlayerManager" parent="." instance=ExtResource("14_spfqp")]
+
+[connection signal="pressed" from="UI/PopUpGamePause/MajorRunePopUpContainer/RuneSlotsContainer/AttackSlot" to="." method="_on_attack_slot_pressed"]
+[connection signal="pressed" from="UI/PopUpGamePause/MajorRunePopUpContainer/RuneSlotsContainer/ActionSlot" to="." method="_on_action_slot_pressed"]
+[connection signal="pressed" from="UI/PopUpGamePause/MajorRunePopUpContainer/RuneSlotsContainer/SpecialSlot" to="." method="_on_special_slot_pressed"]
+[connection signal="pressed" from="UI/PopUpGamePause/MajorRunePopUpContainer/NewRunesContainer/NewStrenghtRune" to="." method="_on_new_strenght_rune_pressed"]
+[connection signal="pressed" from="UI/PopUpGamePause/MajorRunePopUpContainer/NewRunesContainer/NewDexterityRune" to="." method="_on_new_dexterity_rune_pressed"]
+[connection signal="pressed" from="UI/PopUpGamePause/MajorRunePopUpContainer/NewRunesContainer/NewMagicRune" to="." method="_on_new_magic_rune_pressed"]
 [connection signal="pressed" from="UI/PopUpGamePause/ClosePopUpButton" to="." method="_on_close_pop_up_button_pressed"]
+[connection signal="pressed" from="UI/PopUpGamePause/MinorRunePopUpContainer/FirstMinorRune" to="." method="_on_first_minor_rune_pressed"]
+[connection signal="pressed" from="UI/PopUpGamePause/MinorRunePopUpContainer/SecondMinorRune" to="." method="_on_second_minor_rune_pressed"]
+[connection signal="pressed" from="UI/PopUpGamePause/MinorRunePopUpContainer/ThirdMinorRune" to="." method="_on_third_minor_rune_pressed"]

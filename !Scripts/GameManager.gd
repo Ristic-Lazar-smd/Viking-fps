@@ -3,23 +3,33 @@ extends Node3D
 @onready var strengthRunePrefab = preload("res://!Prefabs/Runes/MajorRunes/StrengthRunes/strenght_rune_TEST.tscn")
 @onready var dexRunePrefab = preload("res://!Prefabs/Runes/MajorRunes/DexterityRunes/dexterity_rune_TEST.tscn")
 @onready var magicRunePrefab = preload("res://!Prefabs/Runes/MajorRunes/MagicRunes/magic_rune_TEST.tscn")
-@onready var strenghtRuneContainer = $UI/PopUpGamePause/RunePopUpContainer/NewRunesContainer/NewStrenghtRune/PanelContainer
-@onready var dexRuneContainer = $UI/PopUpGamePause/RunePopUpContainer/NewRunesContainer/NewDexterityRune/PanelContainer
-@onready var magicRuneContainer = $UI/PopUpGamePause/RunePopUpContainer/NewRunesContainer/NewMagicRune/PanelContainer
+@onready var strenghtRuneContainer = $UI/PopUpGamePause/MajorRunePopUpContainer/NewRunesContainer/NewStrenghtRune/PanelContainer
+@onready var dexRuneContainer = $UI/PopUpGamePause/MajorRunePopUpContainer/NewRunesContainer/NewDexterityRune/PanelContainer
+@onready var magicRuneContainer = $UI/PopUpGamePause/MajorRunePopUpContainer/NewRunesContainer/NewMagicRune/PanelContainer
 
 @onready var mainContainer = $UI/PopUpGamePause
+@onready var majorRunePopUpContainer = $UI/PopUpGamePause/MajorRunePopUpContainer
+@onready var closePopUpButton = $UI/PopUpGamePause/ClosePopUpButton
+@onready var minorRunePopUpContainer = $UI/PopUpGamePause/MinorRunePopUpContainer
 
-@onready var attackRuneSlotContainer = $UI/PopUpGamePause/RunePopUpContainer/RuneSlotsContainer/AttackSlot/PanelContainer
-@onready var actionRuneSlotContainer = $UI/PopUpGamePause/RunePopUpContainer/RuneSlotsContainer/ActionSlot/PanelContainer
-@onready var specialRuneSlotContainer = $UI/PopUpGamePause/RunePopUpContainer/RuneSlotsContainer/SpecialSlot/PanelContainer
 
-@onready var newStrenghtRuneButton = $UI/PopUpGamePause/RunePopUpContainer/NewRunesContainer/NewStrenghtRune
-@onready var newDexRuneButton = $UI/PopUpGamePause/RunePopUpContainer/NewRunesContainer/NewDexterityRune
-@onready var newMagicRuneButton = $UI/PopUpGamePause/RunePopUpContainer/NewRunesContainer/NewMagicRune
+@onready var attackRuneSlotContainer = $UI/PopUpGamePause/MajorRunePopUpContainer/RuneSlotsContainer/AttackSlot/PanelContainer
+@onready var actionRuneSlotContainer = $UI/PopUpGamePause/MajorRunePopUpContainer/RuneSlotsContainer/ActionSlot/PanelContainer
+@onready var specialRuneSlotContainer = $UI/PopUpGamePause/MajorRunePopUpContainer/RuneSlotsContainer/SpecialSlot/PanelContainer
 
-@onready var attackSlotButton = $UI/PopUpGamePause/RunePopUpContainer/RuneSlotsContainer/AttackSlot
-@onready var actionSlotButton = $UI/PopUpGamePause/RunePopUpContainer/RuneSlotsContainer/ActionSlot
-@onready var specialSlotButton = $UI/PopUpGamePause/RunePopUpContainer/RuneSlotsContainer/SpecialSlot
+@onready var newStrenghtRuneButton = $UI/PopUpGamePause/MajorRunePopUpContainer/NewRunesContainer/NewStrenghtRune
+@onready var newDexRuneButton = $UI/PopUpGamePause/MajorRunePopUpContainer/NewRunesContainer/NewDexterityRune
+@onready var newMagicRuneButton = $UI/PopUpGamePause/MajorRunePopUpContainer/NewRunesContainer/NewMagicRune
+
+@onready var attackSlotButton = $UI/PopUpGamePause/MajorRunePopUpContainer/RuneSlotsContainer/AttackSlot
+@onready var actionSlotButton = $UI/PopUpGamePause/MajorRunePopUpContainer/RuneSlotsContainer/ActionSlot
+@onready var specialSlotButton = $UI/PopUpGamePause/MajorRunePopUpContainer/RuneSlotsContainer/SpecialSlot
+
+@onready var firstMinorRuneContainer = $UI/PopUpGamePause/MinorRunePopUpContainer/FirstMinorRune/PanelContainer
+
+@onready var healthBar:ProgressBar = $UI/HealthBar
+@onready var xpBar:ProgressBar = $UI/XpBar
+@onready var playerManager = get_node("/root/PlayerManager")
 
 var selectedRune
 var strengthRuneInstance
@@ -34,7 +44,11 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	healthBar.value = playerManager.currentHealth
+	xpBar.value = playerManager.currentXp
 	_activateSlottedRunes()
+	if Input.is_action_just_pressed("levelup"):
+		_minorRunePopUp()
 	if Input.is_action_just_pressed("inventory"):
 		
 		strengthRuneInstance = strengthRunePrefab.instantiate()
@@ -47,6 +61,8 @@ func _process(delta):
 		magicRuneContainer.add_child(magicRuneInstance)
 		
 		mainContainer.visible = true
+		majorRunePopUpContainer.visible = true
+		closePopUpButton.visible = true
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 
@@ -152,4 +168,33 @@ func _on_close_pop_up_button_pressed():
 	selectedRune = null
 	runeChosen = false
 	mainContainer.visible = false
+	majorRunePopUpContainer.visible = false
+	closePopUpButton.visible = true
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+func _minorRunePopUp():
+	mainContainer.visible = true
+	minorRunePopUpContainer.visible = true
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
+
+func _on_first_minor_rune_pressed():
+	#runa radi poso
+	firstMinorRuneContainer.get_child(0)._activateRuneEffect()
+	mainContainer.visible = false
+	minorRunePopUpContainer.visible = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+
+func _on_second_minor_rune_pressed():
+	#runa radi poso
+	mainContainer.visible = false
+	minorRunePopUpContainer.visible = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+
+func _on_third_minor_rune_pressed():
+	#runa radi poso
+	mainContainer.visible = false
+	minorRunePopUpContainer.visible = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
