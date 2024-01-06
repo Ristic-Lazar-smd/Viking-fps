@@ -7,9 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://dsger4cspmod6" path="res://Textures/Orange.png" id="2_e5g57"]
 [ext_resource type="Texture2D" uid="uid://dydnshjfkn7gk" path="res://icon.svg" id="2_e2664"]
 [ext_resource type="Script" path="res://!Scripts/StrengthRuneTEST.gd" id="7_pahq6"]
-[ext_resource type="PackedScene" uid="uid://wskesp4fbn5s" path="res://!Prefabs/strenght_rune_TEST.tscn" id="8_udnm6"]
-[ext_resource type="PackedScene" uid="uid://djv8cwg3mwnq6" path="res://!Prefabs/dexterity_rune_TEST.tscn" id="9_v0nbo"]
-[ext_resource type="PackedScene" uid="uid://d1lh78hy0j1gs" path="res://!Prefabs/magic_rune_TEST.tscn" id="10_36yw3"]
+[ext_resource type="PackedScene" path="res://!Prefabs/strenght_rune_TEST.tscn" id="8_udnm6"]
+[ext_resource type="PackedScene" path="res://!Prefabs/dexterity_rune_TEST.tscn" id="9_v0nbo"]
+[ext_resource type="PackedScene" path="res://!Prefabs/magic_rune_TEST.tscn" id="10_36yw3"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_i6rxv"]
 panorama = ExtResource("1_2x4ah")
@@ -43,33 +43,6 @@ height = 1.8
 radius = 0.4
 height = 1.3
 
-[sub_resource type="Animation" id="Animation_63e5w"]
-resource_name = "player_land"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerCam:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("PlayerCam:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(-0.0174533, 0, 0), Vector3(0, 0, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_krj4r"]
 length = 0.001
 tracks/0/type = "value"
@@ -95,6 +68,33 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_63e5w"]
+resource_name = "player_land"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerCam:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerCam:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.0174533, 0, 0), Vector3(0, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lfyn3"]
@@ -303,6 +303,10 @@ script = ExtResource("7_pahq6")
 
 [node name="RunePrefab" parent="UI/PopUpGamePause/RunePopUpContainer/RuneSlotsContainer/AttackSlot/PanelContainer" instance=ExtResource("8_udnm6")]
 layout_mode = 2
+runeName = ""
+primaryEffectText = ""
+actionEffectText = ""
+specialEffectText = ""
 
 [node name="ActionSlot" type="Button" parent="UI/PopUpGamePause/RunePopUpContainer/RuneSlotsContainer"]
 layout_mode = 2
@@ -324,6 +328,10 @@ mouse_filter = 1
 
 [node name="RunePrefab" parent="UI/PopUpGamePause/RunePopUpContainer/RuneSlotsContainer/ActionSlot/PanelContainer" instance=ExtResource("9_v0nbo")]
 layout_mode = 2
+runeName = ""
+primaryEffectText = ""
+actionEffectText = ""
+specialEffectText = ""
 
 [node name="SpecialSlot" type="Button" parent="UI/PopUpGamePause/RunePopUpContainer/RuneSlotsContainer"]
 layout_mode = 2
@@ -345,6 +353,10 @@ mouse_filter = 1
 
 [node name="RunePrefab" parent="UI/PopUpGamePause/RunePopUpContainer/RuneSlotsContainer/SpecialSlot/PanelContainer" instance=ExtResource("10_36yw3")]
 layout_mode = 2
+runeName = ""
+primaryEffectText = ""
+actionEffectText = ""
+specialEffectText = ""
 
 [node name="NewRunesContainer" type="VBoxContainer" parent="UI/PopUpGamePause/RunePopUpContainer"]
 layout_mode = 2
