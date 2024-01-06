@@ -96,7 +96,7 @@ func _physics_process(delta):
 			current_speed = lerp(current_speed, walking_speed, delta * lerp_speed)
 			is_sprinting = false
 
-	#FREE LOOK LOGIC
+	#FREE LOOK LOGIC-------------------------------------
 	if Input.is_action_pressed("free_look"):
 		is_free_looking = true
 		player_cam.rotation.z = -deg_to_rad(neck.rotation.y * free_look_tilt)
@@ -132,7 +132,7 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 		
-	#HEAD BOB LOGIC
+	#HEAD BOB LOGIC----------------------------------
 	if is_sprinting:
 		head_bobbing_intensity = head_bobbing_sprinting_intensity
 		head_bobbing_index += head_bobbing_sprinting_speed * delta
@@ -166,6 +166,7 @@ func _movementHandler(delta,input_dir):
 		last_input_dir = Vector3.ZERO
 	if !is_on_floor() && input_dir == Vector2.ZERO:
 		direction =  lerp(direction,(transform.basis * last_input_dir).normalized(),delta*lerp_speed)
+		
 	#slide slow down rate
 	if is_sliding: current_speed =  sqrt(1 - pow(slide_timer - 1, 2)) * slide_speed
 	
@@ -187,6 +188,3 @@ func cameraMove(event: InputEvent): #Mouse input logic
 		rotate_y(deg_to_rad(-event.relative.x * mouse_sens))
 	head.rotate_x(deg_to_rad(-event.relative.y * mouse_sens))
 	head.rotation.x = clamp(head.rotation.x,deg_to_rad(-89),deg_to_rad(89))
-
-func calcSpeed() -> int:
-	return round(abs(velocity.x) + abs(velocity.y) + abs(velocity.z))
