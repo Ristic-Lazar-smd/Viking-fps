@@ -7,6 +7,9 @@ extends CharacterBody3D
 @onready var standing_collision = $StandingCollision
 @onready var crouching_collision = $CrouchingCollision
 @onready var raycast_standup = $RayCast3D
+@onready var animation_player: AnimationPlayer = $Neck/Head/Eyes/AnimationPlayer
+
+
 #SPEEDS
 @export var walking_speed = 5.0
 @export var sprint_speed = 10.0
@@ -49,6 +52,8 @@ var is_sprinting = false
 var is_free_looking = false
 var is_sliding = false
 var is_crouching = false
+
+var last_player_velocity = Vector2.ZERO
 
 
 func _ready():
@@ -146,6 +151,9 @@ func _physics_process(delta):
 		eyes.position.x = lerp(eyes.position.x,0.0,delta*lerp_speed)
 		eyes.position.y = lerp(eyes.position.y,0.0,delta*lerp_speed)
 	
+	#Head bob animation on landing
+	if is_on_floor() && last_player_velocity.y < 0:
+		animation_player.play("player_land")
 	
 #--FUNCS--
 func _movementHandler(delta,input_dir):
@@ -154,16 +162,20 @@ func _movementHandler(delta,input_dir):
 	#jump zadrzi momentum
 	if input_dir != Vector2.ZERO:
 		last_input_dir = Vector3(input_dir.x, 0, input_dir.y)
+	if input_dir == Vector2.ZERO && (Input.is_action_just_pressed("jump") and is_on_floor()):
+		last_input_dir = Vector3.ZERO
 	if !is_on_floor() && input_dir == Vector2.ZERO:
 		direction =  lerp(direction,(transform.basis * last_input_dir).normalized(),delta*lerp_speed)
-	
+	#slide slow down rate
 	if is_sliding: current_speed =  sqrt(1 - pow(slide_timer - 1, 2)) * slide_speed
+	
 	if direction:
 		velocity.x = direction.x * current_speed
 		velocity.z = direction.z * current_speed
 	else:
 		velocity.x = move_toward(velocity.x, 0, current_speed)
 		velocity.z = move_toward(velocity.z, 0, current_speed)
+	last_player_velocity = velocity
 	move_and_slide()
 
 
