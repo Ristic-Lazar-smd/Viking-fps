@@ -1,5 +1,6 @@
 extends CharacterBody3D
 #mozda optimizuj jednog dana :)
+@onready var aleksa: CharacterBody3D = $"."
 @onready var neck = $Neck
 @onready var head  = $Neck/Head
 @onready var eyes: Node3D = $Neck/Head/Eyes
@@ -9,24 +10,22 @@ extends CharacterBody3D
 @onready var raycast_standup = $RayCast3D
 @onready var head_bob_anim: AnimationPlayer = $Neck/Head/Eyes/HeadBobAnim
 
-
-
 #SPEEDS
-@export var walking_speed = 5.0
-@export var sprint_speed = 10.0
-@export var crouch_speed = 3.0
+@export var walking_speed = 4.0
+@export var sprint_speed = 8.0
+@export var crouch_speed = 2.5
 @export var jump_speed = 4.5
 @export var jump_boost_speed = 15.0
 
 @export var mouse_sens = 0.15
 @export var gravity = 12
 @export var crouch_depth = -0.5
-
 var current_speed = walking_speed
 var direction = Vector3.ZERO
 var lerp_speed = 10.0
 var free_look_tilt = 3.5
 var last_input_dir = Vector3.ZERO
+
 #slide vars
 var slide_timer = 0.0
 var slide_timer_max = 1.0
@@ -34,6 +33,7 @@ var slide_direction = Vector2.ZERO
 var slide_speed
 var can_slide=true
 var can_jump_boost = true
+
 #Head bobbing vars
 @export_group("Head bob vars")
 @export var head_bobbing_walking_speed = 14.0
@@ -42,7 +42,6 @@ var can_jump_boost = true
 @export var head_bobbing_walking_intensity = 0.1
 @export var head_bobbing_sprinting_intensity = 0.2
 @export var head_bobbing_crouching_intensity = 0.05
-
 var head_bobbing_speed = 10.0
 var head_bobbing_intensity = 0.2
 var head_bobbing_vector = Vector2.ZERO
@@ -55,7 +54,6 @@ var is_sliding = false
 var is_crouching = false
 
 var last_player_velocity = Vector2.ZERO
-
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -97,14 +95,16 @@ func _physics_process(delta):
 			current_speed = lerp(current_speed, walking_speed, delta * lerp_speed)
 			is_sprinting = false
 
-	#FREE LOOK LOGIC-------------------------------------
+	#FREE LOOK LOGIC----------------#ovo je gadno zato sto se else grana STALNO loopuje ali nmg trenurno :(
 	if Input.is_action_pressed("free_look"):
 		is_free_looking = true
 		player_cam.rotation.z = -deg_to_rad(neck.rotation.y * free_look_tilt)
-	else: 
-		is_free_looking = false
+	else:
 		neck.rotation.y = lerp(neck.rotation.y,0.0,delta*lerp_speed)
 		player_cam.rotation.z =lerp(player_cam.rotation.z, 0.0, delta*lerp_speed)
+		
+		
+		is_free_looking = false
 	
 	#SLIDE TIMER
 	if is_sliding:
@@ -114,7 +114,7 @@ func _physics_process(delta):
 			can_slide = true
 		
 	#SLIDE LOGIC
-	if ((round(abs(velocity.x) + abs(velocity.y) + abs(velocity.z))>walking_speed)&&(Input.is_action_pressed("crouch") && is_on_floor()) && can_slide):
+	if ((current_speed>walking_speed) && (Input.is_action_pressed("crouch") && is_on_floor()) && can_slide):
 		can_slide = false
 		is_sliding = true
 		slide_speed = current_speed
@@ -158,7 +158,6 @@ func _physics_process(delta):
 		head_bob_anim.stop()
 		head_bob_anim.play("player_land")
 		
-	
 #--FUNCS--
 func _movementHandler(delta,input_dir):
 	direction =  lerp(direction,(transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized(),delta*lerp_speed)
@@ -182,7 +181,6 @@ func _movementHandler(delta,input_dir):
 		velocity.z = move_toward(velocity.z, 0, current_speed)
 	last_player_velocity = velocity
 	move_and_slide()
-
 
 func cameraMove(event: InputEvent): #Mouse input logic
 	if is_free_looking:

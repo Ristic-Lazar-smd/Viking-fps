@@ -14,7 +14,9 @@ config/name="Viking fps"
 run/main_scene="res://!Scenes/world.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
+
 [autoload]
+
 DrawLine3d="*res://!Scripts/DrawLine3D.gd"
 PlayerManager="*res://!Prefabs/player_manager.tscn"
 

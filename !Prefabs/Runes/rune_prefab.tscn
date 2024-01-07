@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpdxjgq25vviv"]
+
+[ext_resource type="Texture2D" uid="uid://ccaqnnh7uxdd0" path="res://!Sprites/Runes/runeTest.png" id="1_hnspf"]
+[ext_resource type="Script" path="res://!Scripts/Runes/BaseRune.gd" id="1_lvy5b"]
+
+[node name="RunePrefab" type="TextureRect"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -47.0
+offset_top = -44.0
+offset_right = 47.0
+offset_bottom = 44.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(47, 44)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("1_hnspf")
+expand_mode = 1
+stretch_mode = 4
+script = ExtResource("1_lvy5b")
