@@ -24,12 +24,10 @@ func _process(delta: float) -> void:
 	look_at(camera_pos, Vector3.UP,false)
 	
 func _physics_process(delta: float) -> void:
-	
-	nav.target_position = player.global_position
-	direction = nav.get_next_path_position() - global_position
-	direction = direction.normalized()
-	
-	velocity = velocity.lerp(direction * speed,acc * delta)
+	velocity = Vector3.ZERO
+	nav.set_target_position(player.global_transform.origin)
+	var next_nav_point = nav.get_next_path_position()
+	velocity = (next_nav_point - global_transform.origin).normalized() * speed
 	move_and_slide()
 	
 
