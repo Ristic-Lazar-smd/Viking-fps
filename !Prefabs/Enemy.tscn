@@ -1,0 +1,103 @@
+[gd_scene load_steps=15 format=3 uid="uid://0sd58cwfwsqd"]
+
+[ext_resource type="Script" path="res://!Scripts/Enemy_test.gd" id="1_svisj"]
+[ext_resource type="Texture2D" uid="uid://bg2mgw7vvl0li" path="res://!Sprites/ghost-idle.png" id="2_1aypl"]
+[ext_resource type="PackedScene" uid="uid://dnl30h8bc110u" path="res://!Prefabs/Health_component.tscn" id="3_njscc"]
+[ext_resource type="PackedScene" uid="uid://lv1jpalohmj6" path="res://!Prefabs/Hitbox_component.tscn" id="4_umh1e"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5xvbp"]
+atlas = ExtResource("2_1aypl")
+region = Rect2(0, 17, 64, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_etl8w"]
+atlas = ExtResource("2_1aypl")
+region = Rect2(64, 17, 64, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iofc0"]
+atlas = ExtResource("2_1aypl")
+region = Rect2(128, 17, 64, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0i1mm"]
+atlas = ExtResource("2_1aypl")
+region = Rect2(192, 17, 64, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fkt85"]
+atlas = ExtResource("2_1aypl")
+region = Rect2(256, 17, 64, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r20wx"]
+atlas = ExtResource("2_1aypl")
+region = Rect2(320, 17, 64, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kxb40"]
+atlas = ExtResource("2_1aypl")
+region = Rect2(384, 17, 64, 51)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jeans"]
+animations = [{
+"frames": [{
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_5xvbp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_etl8w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iofc0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0i1mm")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_fkt85")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r20wx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kxb40")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_c0hmq"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qwnbk"]
+
+[node name="Enemy" type="CharacterBody3D"]
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+script = ExtResource("1_svisj")
+player_path = NodePath("../../Aleksa")
+
+[node name="AnimatedSprite" type="AnimatedSprite3D" parent="."]
+pixel_size = 0.05
+billboard = 2
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_jeans")
+frame_progress = 0.510742
+speed_scale = 2.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.163663, 0)
+shape = SubResource("CapsuleShape3D_c0hmq")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_max_distance = 100.01
+height = 2.0
+radius = 1.0
+
+[node name="HealthComponent" parent="." instance=ExtResource("3_njscc")]
+
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_umh1e")]
+collision_layer = 4
+collision_mask = 2
+health_component = NodePath("../HealthComponent")
+
+[node name="Hitbox" type="CollisionShape3D" parent="HitboxComponent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.174645, 0)
+shape = SubResource("CapsuleShape3D_qwnbk")
+
+[connection signal="area_entered" from="HitboxComponent" to="." method="_on_hitbox_component_area_entered"]

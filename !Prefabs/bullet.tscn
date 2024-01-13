@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://be2i76csi4gc8"]
+[gd_scene load_steps=9 format=3 uid="uid://be2i76csi4gc8"]
 
 [ext_resource type="Script" path="res://!Scripts/Bullet.gd" id="1_o004y"]
 [ext_resource type="Texture2D" uid="uid://iem0tp32nqq6" path="res://Textures/axe_190409_texture.jpg" id="2_2nkme"]
@@ -45,8 +45,14 @@ _data = {
 "bullet_spin": SubResource("Animation_t6o01")
 }
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_23heq"]
+radius = 0.0399518
+height = 0.799915
+
 [node name="Bullet" type="Node3D"]
 script = ExtResource("1_o004y")
+bullet_speed = 10.0
+knockback_force = 1.0
 
 [node name="Axe190409" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
@@ -55,8 +61,14 @@ mesh = ExtResource("3_1psei")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 target_position = Vector3(0, 0, -0.38)
+collision_mask = 2
 
 [node name="BulletAnim" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_prgwr")
 }
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CapsuleShape3D_23heq")

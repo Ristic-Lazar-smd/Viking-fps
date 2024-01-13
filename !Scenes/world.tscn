@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://clj56ib6cl4qd"]
+[gd_scene load_steps=44 format=3 uid="uid://clj56ib6cl4qd"]
 
 [ext_resource type="Texture2D" uid="uid://dab25idfe32si" path="res://Textures/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="1_2x4ah"]
 [ext_resource type="Script" path="res://!Scripts/GameManager.gd" id="1_717cj"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b1k8mq6l733um" path="res://Textures/Dark-grid.png" id="1_y2soj"]
 [ext_resource type="Texture2D" uid="uid://dsger4cspmod6" path="res://Textures/Orange.png" id="2_e5g57"]
 [ext_resource type="Texture2D" uid="uid://dydnshjfkn7gk" path="res://icon.svg" id="2_e2664"]
+[ext_resource type="PackedScene" uid="uid://0sd58cwfwsqd" path="res://!Prefabs/Enemy.tscn" id="5_wy3j5"]
 [ext_resource type="Texture2D" uid="uid://iem0tp32nqq6" path="res://Textures/axe_190409_texture.jpg" id="6_1gv78"]
 [ext_resource type="Script" path="res://!Scripts/Weapon.gd" id="6_x67dr"]
 [ext_resource type="PackedScene" uid="uid://c1g2ucilqkeue" path="res://!Prefabs/Axe_r.tscn" id="7_7i3sv"]
@@ -250,14 +251,17 @@ material = SubResource("StandardMaterial3D_gru4q")
 
 [node name="Enemies" type="Node3D" parent="."]
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="Enemies"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.2105, 1.33977, 13.7467)
+[node name="Enemy" parent="Enemies" instance=ExtResource("5_wy3j5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.1844, 1.33977, 13.7467)
+
+[node name="CharacterBody3D2" type="CharacterBody3D" parent="Enemies"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.90979, 1.12138, -4.8533)
 axis_lock_angular_x = true
 axis_lock_angular_z = true
 script = ExtResource("20_cx6sv")
 player_path = NodePath("../../Aleksa")
 
-[node name="AnimatedSprite" type="AnimatedSprite3D" parent="Enemies/CharacterBody3D"]
+[node name="AnimatedSprite" type="AnimatedSprite3D" parent="Enemies/CharacterBody3D2"]
 pixel_size = 0.05
 billboard = 2
 texture_filter = 0
@@ -265,11 +269,14 @@ sprite_frames = SubResource("SpriteFrames_jeans")
 frame_progress = 0.510742
 speed_scale = 2.0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Enemies/CharacterBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enemies/CharacterBody3D2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.163663, 0)
 shape = SubResource("CapsuleShape3D_c0hmq")
 
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="Enemies/CharacterBody3D"]
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="Enemies/CharacterBody3D2"]
+path_max_distance = 100.01
+height = 2.0
+radius = 1.0
 
 [node name="Aleksa" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.99137)
@@ -304,7 +311,7 @@ fov = 90.0
 script = ExtResource("6_x67dr")
 
 [node name="AxeR" parent="Aleksa/Neck/Head/Eyes/PlayerCam/Weapon" instance=ExtResource("7_7i3sv")]
-transform = Transform3D(0.535908, 0.248894, -0.104185, -0.253561, 0.543764, -0.00523592, 0.0922481, 0.0487054, 0.590862, 0.41, -0.18, -0.265)
+transform = Transform3D(0.535908, 0.248894, -0.104185, -0.253561, 0.543764, -0.00523592, 0.0922482, 0.0487054, 0.590862, 0.41, -0.18, -0.265)
 
 [node name="AxeL" type="MeshInstance3D" parent="Aleksa/Neck/Head/Eyes/PlayerCam/Weapon"]
 transform = Transform3D(0.203266, 0.563655, 0.0312315, -0.486545, 0.158088, 0.313499, 0.28628, -0.131532, 0.51063, -0.335, -0.19, -0.18)
